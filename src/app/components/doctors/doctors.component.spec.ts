@@ -5,15 +5,21 @@ import { DoctorsComponent } from './doctors.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { DataService } from '../../services/data.service';
+import { of } from 'rxjs';
+
+import { inject } from '@angular/core/testing';
+
 
 describe('DoctorsComponent', () => {
   let component: DoctorsComponent;
   let fixture: ComponentFixture<DoctorsComponent>;
   let service: DataService;
-  const dummyDoctors = [
-    { id:1, name: 'Leanne Graham', username: 'Bret', email: 'Sincere@april.biz' },
-    { id:2, name: 'Ervin Howell', username: 'Antonette', email: 'Shanna@melissa.tv' }
-  ];
+  const dummyService = {
+    get() {
+      const doctors = [{id: 1}];
+      return of(doctors);
+        }
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

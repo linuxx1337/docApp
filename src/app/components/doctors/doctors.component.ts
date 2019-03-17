@@ -25,7 +25,7 @@ export class DoctorsComponent implements OnInit {
 
    getView() {
     this.data.getDoctors()
-    .subscribe( doctors => {this.doctors = doctors})
+    .subscribe( doctors => {this.doctors = doctors; this.setTask()})
 
     this.data.getTasks()
      .subscribe( tasks => {this.tasks = tasks; this.setTask()} )
@@ -40,6 +40,7 @@ export class DoctorsComponent implements OnInit {
         for(const task of this.tasks) {
           if (doctor.id === task.userId) {
             doctor.tasks.push(task)
+            
           }
         }
       }
