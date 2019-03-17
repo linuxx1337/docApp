@@ -1,0 +1,83 @@
+
+<div class="container-fluid">
+  <div class="accordion" id="accordionPrimary">
+    <div class="card" *ngFor="let doctor of doctors; index as j">
+
+
+      <div class="card-header" [attr.id]="'heading'+j">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+j"
+            [attr.aria-expanded]="false" [attr.aria-controls]="'collapse'+j">
+            dr. {{ doctor.name | uppercase}}
+          </button>
+        </h5>
+      </div>
+
+      <div [attr.id]="'collapse'+j" class="collapse out" [attr.aria-labelledby]="'heading'+j"
+        data-parent="#accordionPrimary">
+        <div class="card-body">
+          Doctor details &raquo; <br>
+          <small> <strong>Username: </strong> {{ doctor.username }}</small>
+          <br><small> <strong>Email: </strong> {{ doctor.email }}</small>
+          <br><small> <strong>Address: </strong>
+            <ul><u>Street</u>: {{doctor.address.street}}</ul>
+            <ul><u>Suite</u>: {{doctor.address.suite}}</ul>
+            <ul><u>City</u>: {{doctor.address.city}}</ul>
+            <ul><u>Zipcode</u>: {{doctor.address.zipcode}}</ul>
+            <ul><u>Geo</u>: <ul>lat: {{doctor.address.geo.lat}}</ul>
+              <ul>lng: {{doctor.address.geo.lng}}</ul>
+            </ul>
+          </small>
+          <small> <strong>Phone: </strong> {{ doctor.phone }}</small>
+          <br><small> <strong>Website: </strong> {{ doctor.website }}</small>
+          <br><small> <strong>Company: </strong>
+            <ul><u>Name</u>: {{doctor.company.name}}</ul>
+            <ul><u>CatchPhrase</u>: {{doctor.company.catchPhrase}}</ul>
+            <ul><u>BS</u>: {{doctor.company.bs}}</ul>
+          </small>
+
+          <hr>
+
+          <div class="panel" id="accordionSecondary">
+            <div [attr.id]="'headingSecond'+j">
+              <button class="btn btn-link p-0" type="button" data-toggle="collapse"
+                [attr.data-target]="'#collapseSecond'+j" [attr.aria-expanded]="true"
+                [attr.aria-controls]="'collapseSecond'+j">
+                Doctor tasks &raquo;
+              </button>
+            </div>
+
+            <div [attr.id]="'collapseSecond'+j" class="panel-collapse collapse"
+              [attr.aria-labelledby]="'headingSecond'+j" data-parent="#accordionSecondary">
+              <div class="panel-body" *ngFor="let task of doctor.tasks; index as i">
+                <p>
+                  <small> <strong>Task {{i+1}}: </strong> {{ task.title }}</small>
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- onClick show tasks by userId
+<section *ngFor="let doctor of doctors">
+  <aside>ID:  <span id="id">{{doctor.id}}</span></aside>
+  <aside>Title:  {{doctor.name}}</aside>
+  <button (click)="linkto(doctor.id)">Show Task</button>
+  <br>
+  <hr>
+</section>
+
+<div *ngFor="let task of tasks">
+  <aside>ID:  {{task.id}}</aside>
+  <aside>Title:  {{task.title}}</aside>
+  <aside>Completed:  {{task.completed}}</aside>
+  <br>
+</div>
+-->
